@@ -4,6 +4,20 @@ namespace GrifoUsuarios
 {
     class Program
     {
+        static double LeerDouble(string mensaje)
+        {
+            double valor;
+            Console.Write(mensaje);
+
+            while (!double.TryParse(Console.ReadLine(), out valor))
+            {
+                Console.WriteLine("Valor inválido. Debes ingresar solo números (ejemplo: 150.5).");
+                Console.Write(mensaje);
+            }
+
+            return valor;
+        }
+
         static void Main(string[] args)
         {
             Grifo grifo = new Grifo();
@@ -30,10 +44,8 @@ namespace GrifoUsuarios
                     case "2":
                         Console.Write("Nombre del cliente: ");
                         string nombreCliente = Console.ReadLine();
-                        Console.Write("Saldo: ");
-                        double saldoCliente = Convert.ToDouble(Console.ReadLine());
-                        Console.Write("Litros cargados: ");
-                        double litros = Convert.ToDouble(Console.ReadLine());
+                        double saldoCliente = LeerDouble("Saldo: ");
+                        double litros = LeerDouble("Litros cargados: ");
 
                         grifo.AgregarUsuario(new Cliente(nombreCliente, saldoCliente, litros));
                         Console.WriteLine("Cliente agregado correctamente.");
@@ -42,10 +54,8 @@ namespace GrifoUsuarios
                     case "3":
                         Console.Write("Nombre del empleado: ");
                         string nombreEmpleado = Console.ReadLine();
-                        Console.Write("Saldo: ");
-                        double saldoEmpleado = Convert.ToDouble(Console.ReadLine());
-                        Console.Write("Sueldo: ");
-                        double sueldo = Convert.ToDouble(Console.ReadLine());
+                        double saldoEmpleado = LeerDouble("Saldo: ");
+                        double sueldo = LeerDouble("Sueldo: ");
 
                         grifo.AgregarUsuario(new Empleado(nombreEmpleado, saldoEmpleado, sueldo));
                         Console.WriteLine("Empleado agregado correctamente.");
