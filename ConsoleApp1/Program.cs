@@ -4,7 +4,6 @@ namespace GrifoUsuarios
 {
     class Program
     {
-        // Método que valida que lo ingresado sea un número
         static double LeerDouble(string mensaje)
         {
             double valor;
@@ -19,7 +18,6 @@ namespace GrifoUsuarios
             return valor;
         }
 
-        // Método que valida que el nombre no esté vacío ni sean solo números
         static string LeerNombre(string mensaje)
         {
             string texto;
