@@ -4,6 +4,7 @@ namespace GrifoUsuarios
 {
     class Program
     {
+        // Método que valida que lo ingresado sea un número
         static double LeerDouble(string mensaje)
         {
             double valor;
@@ -11,11 +12,28 @@ namespace GrifoUsuarios
 
             while (!double.TryParse(Console.ReadLine(), out valor))
             {
-                Console.WriteLine("Valor inválido. Debes ingresar solo números (ejemplo: 150.5).");
+                Console.WriteLine("⚠ Valor inválido. Debes ingresar solo números (ejemplo: 150.5).");
                 Console.Write(mensaje);
             }
 
             return valor;
+        }
+
+        // Método que valida que el nombre no esté vacío ni sean solo números
+        static string LeerNombre(string mensaje)
+        {
+            string texto;
+            Console.Write(mensaje);
+            texto = Console.ReadLine();
+
+            while (string.IsNullOrWhiteSpace(texto) || double.TryParse(texto, out _))
+            {
+                Console.WriteLine("⚠ Nombre inválido. No puede estar vacío ni ser solo números.");
+                Console.Write(mensaje);
+                texto = Console.ReadLine();
+            }
+
+            return texto;
         }
 
         static void Main(string[] args)
@@ -42,8 +60,7 @@ namespace GrifoUsuarios
                         break;
 
                     case "2":
-                        Console.Write("Nombre del cliente: ");
-                        string nombreCliente = Console.ReadLine();
+                        string nombreCliente = LeerNombre("Nombre del cliente: ");
                         double saldoCliente = LeerDouble("Saldo: ");
                         double litros = LeerDouble("Litros cargados: ");
 
@@ -52,8 +69,7 @@ namespace GrifoUsuarios
                         break;
 
                     case "3":
-                        Console.Write("Nombre del empleado: ");
-                        string nombreEmpleado = Console.ReadLine();
+                        string nombreEmpleado = LeerNombre("Nombre del empleado: ");
                         double saldoEmpleado = LeerDouble("Saldo: ");
                         double sueldo = LeerDouble("Sueldo: ");
 
